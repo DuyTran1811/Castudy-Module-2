@@ -31,6 +31,10 @@ public class SmartPhone {
         this.screenSize = screenSize;
     }
 
+    public static void setNextId(int nextId) {
+        SmartPhone.nextId = nextId;
+    }
+
     public void setId(String id) {
         if (id == null) {
             this.id = "MSP" + nextId;

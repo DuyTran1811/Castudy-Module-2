@@ -16,7 +16,6 @@ import java.util.Scanner;
 
 public class ManageSmartPhone {
     List<SmartPhone> listSmartPhone = new ArrayList<>(reardToFile());
-
     public static final String fileName = "FileSmartPhone.csv";
 
     public void ceartSmartPhone(Scanner input) {
@@ -34,7 +33,7 @@ public class ManageSmartPhone {
         listSmartPhone.add(smartPhone);
     }
 
-    public void showSmartPhone() {
+    public void showSmartPhone(List<SmartPhone> listSmartPhone) {
         System.out.printf("%-13s%-13s%-13s%-13s%-20s%-13s\n",
                 "Mã SP", "Tên Hãng", "Nhập Tên", "Giá SP", "Năm Sản Xuất", "Kích Thước Màn Hình");
         for (SmartPhone smp : listSmartPhone) {
@@ -99,22 +98,26 @@ public class ManageSmartPhone {
     }
 
     public void WirterFile() {
-        File file = new File(fileName);
-        try (FileWriter fileWriter = new FileWriter(file, true)) {
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            for (SmartPhone smp : listSmartPhone) {
-                if (file.exists()) {
-                    printWriter.println(smp.getId());
-                    printWriter.println(smp.getBrand());
-                    printWriter.println(smp.getName());
-                    printWriter.println(smp.getPrice());
-                    printWriter.println(smp.getYearProduce());
-                    printWriter.println(smp.getScreenSize());
+        if (listSmartPhone.size() > 0) {
+            File file = new File(fileName);
+            try (FileWriter fileWriter = new FileWriter(file)) {
+                PrintWriter printWriter = new PrintWriter(fileWriter);
+                for (SmartPhone smp : listSmartPhone) {
+                    if (file.exists()) {
+                        printWriter.println(smp.getId());
+                        printWriter.println(smp.getBrand());
+                        printWriter.println(smp.getName());
+                        printWriter.println(smp.getPrice());
+                        printWriter.println(smp.getYearProduce());
+                        printWriter.println(smp.getScreenSize());
+                    }
                 }
+                printWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            printWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }else {
+            System.out.println("Danh Sách Rỗng");
         }
     }
 
@@ -144,5 +147,27 @@ public class ManageSmartPhone {
         System.out.println("Nhap Ma SP");
         String id = input.nextLine();
         listSmartPhone.removeIf(smp -> smp.getId().compareTo(id) == 0);
+    }
+
+    public void search(Scanner input) {
+        List<SmartPhone> list = new ArrayList<>();
+        System.out.println("Nhập Mã Sản Phẩm");
+        String id = input.nextLine();
+        for (SmartPhone smp : listSmartPhone) {
+            if (smp.getId().compareTo(id) == 0) {
+                list.add(smp);
+            }
+        }
+        showSmartPhone(list);
+    }
+    public void upDateSmartPhone(List<SmartPhone> listSmartPhone) {
+        int max = 100;
+        for (SmartPhone smp : listSmartPhone) {
+            int curd = Integer.parseInt(smp.getId().substring(3));
+            if (curd > max) {
+                max = curd;
+            }
+        }
+        SmartPhone.setNextId(max + 1);
     }
 }
