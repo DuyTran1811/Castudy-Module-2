@@ -1,10 +1,11 @@
-package ManagerSmartPhone;
+package service;
 
 import Exception.*;
 import conperator.SortPriceAscending;
 import conperator.SortPriceSpiral;
 import conperator.SortYearAscending;
 import conperator.SortYearSpiral;
+import model.SmartPhone;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManageSmartPhone {
-    List<SmartPhone> listSmartPhone = new ArrayList<>(reardToFile());
+    public List<SmartPhone> listSmartPhone = new ArrayList<>(reardToFile());
     public static final String fileName = "FileSmartPhone.csv";
 
     public void ceartSmartPhone(Scanner input) {

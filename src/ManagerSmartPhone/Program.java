@@ -1,9 +1,11 @@
 package ManagerSmartPhone;
 
+import service.ManageSmartPhone;
+
 import java.util.Scanner;
 
-public class Test {
-    public static void main(String[] args) {
+public class Program {
+    public void mains() {
         Scanner input = new Scanner(System.in);
         ManageSmartPhone manager = new ManageSmartPhone();
         manager.upDateSmartPhone(manager.listSmartPhone);

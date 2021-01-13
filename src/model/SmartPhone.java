@@ -1,4 +1,4 @@
-package ManagerSmartPhone;
+package model;
 
 import Exception.*;
 

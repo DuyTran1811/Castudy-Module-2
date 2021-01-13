@@ -1,6 +1,6 @@
 package conperator;
 
-import ManagerSmartPhone.SmartPhone;
+import model.SmartPhone;
 
 import java.util.Comparator;
 

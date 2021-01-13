@@ -1,7 +1,6 @@
 package conperator;
 
-import ManagerSmartPhone.SmartPhone;
-import sun.util.resources.LocaleData;
+import model.SmartPhone;
 
 import java.util.Comparator;
 
